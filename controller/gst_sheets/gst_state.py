@@ -46,24 +46,31 @@ class GSTStateName:
 
     @staticmethod
     async def get_state_from_gstin(data):
-        print("api v2")
-        gstin = data.gstNumber
-        gstin = gstin.strip().upper()
+        try:
+            gstin = data.gstNumber
+            gstin = gstin.strip().upper()
 
-        if not re.match(r'^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$', gstin):
-            raise HTTPException(status_code=400, detail="Invalid GSTIN format")
+            if not re.match(r'^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$', gstin):
+                raise HTTPException(status_code=400, detail="Invalid GSTIN format")
 
-        state_code = gstin[:2]
-        state_name = STATE_CODES.get(state_code)
+            state_code = gstin[:2]
+            state_name = STATE_CODES.get(state_code)
 
-        if not state_name:
-            raise HTTPException(status_code=404, detail="State code not found")
+            if not state_name:
+                raise HTTPException(status_code=404, detail="State code not found")
 
-        return {
-            "gstin": gstin,
-            "state_code": state_code,
-            "state_name": state_name,
-            "filling_frequency":data.filingFrequency,
-            "month":data.month,
-            "year":data.year
-        }
+            return {
+                "gstin": gstin,
+                "state_code": state_code,
+                "state_name": state_name,
+                "filling_frequency":data.filingFrequency,
+                "month":data.month,
+                "year":data.year
+            }
+        except Exception as http_err:
+            raise http_err
+        except Exception as e:
+            return {
+                "state_code":500,
+                "detail" : f"Server error as {str(e)}"
+            }
