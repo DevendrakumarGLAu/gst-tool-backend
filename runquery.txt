@@ -1,0 +1,20 @@
+INSERT INTO user_roles (name, description, created_at, updated_at, is_active)
+VALUES ('admin', 'Administrator role', NOW(), NOW(), TRUE);
+
+INSERT INTO user_registration (
+    email,
+    password,
+    full_name,
+	role_id,
+    is_active,
+    created_at,
+    updated_at
+) VALUES (
+    'dev@example.com',
+    'pbkdf2_sha256$600000$4HqC93hUjT5O$wR4HwMi7V3oQWrzDd5qE3rmj9YVEbDnxr3wcMwcw7tE=',
+    'Devendra Kumar',
+	2,
+    TRUE,
+    NOW(),
+    NOW()
+);
