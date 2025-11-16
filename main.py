@@ -12,13 +12,14 @@ from routers.api_router import api_router
 from fastapi.middleware.cors import CORSMiddleware
 
 
-app = FastAPI(title="School Management API", version="1.0")
-origins = [
-    "http://localhost:4200",  # Angular dev server
-    "http://127.0.0.1:4200",
-    '*'
-    # Add production URLs here
-]
+app = FastAPI(title="GST Management API", version="1.0")
+# origins = [
+#     "http://localhost:4200",  # Angular dev server
+#     "http://127.0.0.1:4200",
+#     '*'
+# ]
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # can also use ["*"] to allow all
