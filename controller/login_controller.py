@@ -22,8 +22,6 @@ class LoginController:
     @staticmethod
     def login_user(email: str, password: str):
         try:
-            import pdb
-            pdb.set_trace()
             # Check if email matches
             if email != HARDCODED_USER["email"]:
                 raise HTTPException(status_code=404, detail="User not found")
