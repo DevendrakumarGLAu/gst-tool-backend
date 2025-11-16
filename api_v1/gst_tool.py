@@ -12,27 +12,6 @@ import pandas as pd
 
 gst_router = APIRouter()
 
-# @gst_router.post("/upload-excels")
-# async def upload_excels(
-#    tcs_sales_return: UploadFile = File(...),
-#     tcs_sales: UploadFile = File(...),
-#     tax_invoice_details: UploadFile = File(...),
-#     gst_number: str = Form(...),
-#     filing_frequency: Optional[str] = Form(None),
-#     month: Optional[str] = Form(None),
-#     quarter: Optional[str] = Form(None),
-#     year: Optional[str] = Form(None)
-# ):
-#     return await GSTController.calculate_gst(
-#         tcs_sales_return,
-#         tcs_sales,
-#         tax_invoice_details,
-#         gstNumber=gst_number,
-#         filingFrequency=filing_frequency,
-#         month=month,
-#         quarter=quarter,
-#         year=year
-#     )
 @gst_router.post("/upload-excels")
 async def upload_excels(
     tcs_sales_return: UploadFile = File(...),
